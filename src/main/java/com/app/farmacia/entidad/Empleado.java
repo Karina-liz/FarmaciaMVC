@@ -57,7 +57,7 @@ public class Empleado {
     }
 
     //constructor para crear un empleado sin id (PRUEBA)
-    /*public Empleado(String nombre, String apellido, String email, String clave, int telefono, String puesto,
+    public Empleado(String nombre, String apellido, String email, String clave, int telefono, String puesto,
             String dni, double salario) {
 
         this.nombre = nombre;
@@ -68,7 +68,7 @@ public class Empleado {
         this.puesto = puesto;
         this.dni = dni;
         this.salario = salario;
-    }  */
+    } 
 
     public Long getId() {
         return id;
