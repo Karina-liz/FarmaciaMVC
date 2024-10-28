@@ -18,7 +18,7 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     public List<Empleado> listarEmpleados() {
         return empleadoRepositorio.findAll();
     }
-/* 
+
     @Override
     public Empleado guardarEmpleado(Empleado empleado) {
         return empleadoRepositorio.save(empleado);
@@ -37,6 +37,6 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     @Override
     public void eliminarEmpleado(Long id) {
         empleadoRepositorio.deleteById(id);
-    }*/
+    }
 }
 

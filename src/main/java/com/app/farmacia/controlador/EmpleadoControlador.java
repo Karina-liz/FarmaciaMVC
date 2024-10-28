@@ -1,28 +1,29 @@
 package com.app.farmacia.controlador;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import com.app.farmacia.servicio.EmpleadoServicio;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.app.farmacia.servicio.EmpleadoServicio;
+import com.app.farmacia.entidad.Empleado;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class EmpleadoControlador {
 
-    // peticion get para listar empleados
     @Autowired
     private EmpleadoServicio empleadoServicio;
-    
+    // peticion get para listar empleados
 
-    // retorna el archivo de empleados.html
     @GetMapping({ "/empleados", "/" })
     public String listarEmpleados(Model modelo) {
         modelo.addAttribute("empleados", empleadoServicio.listarEmpleados());
-        return "empleados"; 
+        return "empleados"; // retorna el archivo de empleados.html
     }
-/* 
+
     @GetMapping("/empleados/nuevo")
     public String mostrarFormularioDeRegistrarEmpleado(Model modelo) {
         Empleado empleado = new Empleado();
@@ -66,5 +67,5 @@ public class EmpleadoControlador {
         empleadoServicio.eliminarEmpleado(id);
         return "redirect:/empleados";
     }
-*/
+
 }
