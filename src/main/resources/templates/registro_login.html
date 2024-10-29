@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio de Sesión</title>
-
+  <title>Registro</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./login_registro.css" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
@@ -14,29 +13,22 @@
   
   <div class="container">
     <form>
-      <h1>¡Hola!</h1>
+      <h1>¡Bienvenido!</h1>
       <hr>
-      <p>Ingresa tus datos</p>
+      <p>Ingresa tus datos para registrarte</p>
 
       <div class="input-box">
         <label for="username">Usuario:</label>
-        <input type="text" name="username" placeholder="Ingresa el código UTP" required />
+        <input type="text" name="txtemail" name="username" placeholder="Ingresa el código UTP" required />
         <h5>Ejemplo: usuario_2000@gmail.com</h5>
       </div>
 
       <div class="input-box">
         <label for="password">Contraseña:</label>
-        <input type="password" name="password" placeholder="Ingresa la contraseña" required />
-        <a href="#">Restablecer contraseña</a>
+        <input type="password" name="txtpwd" placeholder="Ingresa la contraseña" required />
       </div>
-<br>
       
-      <button class="btn-login" type="submit" value="login" name="btnLogin">Iniciar Sesión</button>
-      <button class="btn-invitado" type="submit" value="invitado" name="btnInvitado">Modo Invitado</button>
-      
-      <div class="remember-forgot-r">
-        <a href="#">¿Aún no tienes una cuenta? Regístrate</a>
-      </div>
+      <button class="btn-login" type="submit" value="Registrar" name="btnRegistrar">Registrar</button>
     </form>
   </div>
 </body>
