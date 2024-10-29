@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.farmacia.entidad.Empleado;
-import com.app.farmacia.repositorio.EmpleadoRepositorio;
+import com.app.farmacia.repositorio.EmpleadoDAO;
 
 
 @Service
 public class EmpleadoServicioImpl implements EmpleadoServicio {
     
     @Autowired
-    private EmpleadoRepositorio empleadoRepositorio;
+    private EmpleadoDAO empleadoRepositorio;
 
     @Override
     public List<Empleado> listarEmpleados() {
