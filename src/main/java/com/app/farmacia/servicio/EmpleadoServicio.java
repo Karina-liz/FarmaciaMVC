@@ -1,7 +1,6 @@
 package com.app.farmacia.servicio;
 
 import com.app.farmacia.entidad.Empleado;
-
 import java.util.List;
 
 public interface EmpleadoServicio {

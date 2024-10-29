@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Empleados</title>
+    <title>Editar Productos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -34,49 +34,40 @@
             <div class="col-lg-8 col-md-10 col-sm-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        <h2 class="text-center mb-0">Registro de Empleados</h2>
+                        <h2 class="text-center mb-0">Editar Datos de Productos</h2>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/empleados}" th:object="${empleado}" method="POST">
+                        <form th:action="@{/productos/{id}(id=${producto.id})}" th:object="${producto}" method="POST">
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese su nombre" required>
+                                <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                <input type="text" id="nombreProducto" name="NombreProducto" th:field="*{NombreProducto}" class="form-control" placeholder="Ingrese el nombre del producto" required>
                             </div>
-
+    
                             <div class="mb-3">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" id="apellido" name="apellido" th:field="*{apellido}" class="form-control" placeholder="Ingrese su apellido" required>
+                                <label for="categoria" class="form-label">Categoría</label>
+                                <input type="text" id="categoria" name="Categoria" th:field="*{Categoria}" class="form-control" placeholder="Ingrese la categoría" required>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="dni" class="form-label">DNI</label>
-                                <input type="text" id="dni" name="dni" th:field="*{dni}" class="form-control" placeholder="Ingrese su DNI" required>
+                                <label for="precioVenta" class="form-label">Precio de Venta</label>
+                                <input type="number" id="precioVenta" name="PrecioVenta" th:field="*{PrecioVenta}" class="form-control" placeholder="Ingrese el precio de venta" required>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" th:field="*{telefono}" class="form-control" placeholder="Ingrese su teléfono" required>
+                                <label for="principioActivo" class="form-label">Principio Activo</label>
+                                <input type="text" id="principioActivo" name="PrincipioActivo" th:field="*{PrincipioActivo}" class="form-control" placeholder="Ingrese el principio activo" required>
                             </div>
-
+    
                             <div class="mb-3">
-                                <label for="puesto" class="form-label">Puesto</label>
-                                <input type="text" id="puesto" name="puesto" th:field="*{puesto}" class="form-control" placeholder="Ingrese su puesto" required>
+                                <label for="presentacion" class="form-label">Presentación</label>
+                                <input type="text" id="presentacion" name="Presentacion" th:field="*{Presentacion}" class="form-control" placeholder="Ingrese la presentación" required>
                             </div>
-
+    
                             <div class="mb-3">
-                                <label for="salario" class="form-label">Salario</label>
-                                <input type="number" id="salario" name="salario" th:field="*{salario}" class="form-control" placeholder="Ingrese su salario" required>
+                                <label for="laboratorio" class="form-label">Laboratorio</label>
+                                <input type="text" id="laboratorio" name="Laboratorio" th:field="*{Laboratorio}" class="form-control" placeholder="Ingrese el laboratorio" required>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo</label>
-                                <input type="email" id="email" name="email" th:field="*{email}" class="form-control" placeholder="Ingrese su correo" required>
-                            </div>
-
-                            <div class="mb-3"></div>
-                                <label for="clave" class="form-label">Clave</label>
-                                <input type="password" id="clave" name="clave" th:field="*{clave}" class="form-control" placeholder="Ingrese su clave" required>
-                            </div>
+    
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
                             </div>
@@ -86,6 +77,7 @@
             </div>
         </div>
     </div>
+    
 
     <!-- script de bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
