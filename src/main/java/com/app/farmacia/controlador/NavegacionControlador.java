@@ -8,7 +8,7 @@ public class NavegacionControlador {
     public String mostrarMenuE(Model model) {
         return "empleados"; 
     }
-}
+
 
     @GetMapping("/ListaLote")
     public String mostrarMenuL(Model model) {

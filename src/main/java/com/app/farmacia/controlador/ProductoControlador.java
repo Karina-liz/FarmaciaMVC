@@ -46,7 +46,7 @@ public class ProductoControlador {
     public String actualizarProducto(@PathVariable Long id, @ModelAttribute("producto") Producto producto,
                                      Model modelo) {
         Producto productoExistente = ProductoServicio.obtenerProductoPorId(id);
-        productoExistente.setId(id);
+        productoExistente.setIdProducto(id);
         productoExistente.setNombreProducto(producto.getNombreProducto());
         productoExistente.setCategoria(producto.getCategoria());
         productoExistente.setPrecioVenta(producto.getPrecioVenta());
