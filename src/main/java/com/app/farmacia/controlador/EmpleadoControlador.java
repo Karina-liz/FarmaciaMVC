@@ -18,7 +18,7 @@ public class EmpleadoControlador {
     private EmpleadoServicio empleadoServicio;
     // peticion get para listar empleados
 
-    @GetMapping({ "/empleados", "/" })
+    @GetMapping({ "/empleados"})
     public String listarEmpleados(Model modelo) {
         modelo.addAttribute("empleados", empleadoServicio.listarEmpleados());
         return "empleados"; // retorna el archivo de empleados.html
