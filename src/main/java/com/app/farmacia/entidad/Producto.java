@@ -1,5 +1,4 @@
 package com.app.farmacia.entidad;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,10 +33,16 @@ public class Producto {
     @Column(name = "Laboratorio", nullable = false, length = 50)
     private String Laboratorio;
 
+    @Column(name = "lote", nullable = false, length = 6)
+    private String lote;
+
+    @Column(name = "fecha_vencimiento", nullable = false)
+    private String fechaVencimiento;
+
     public Producto() {
     }
 
-    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, String PrincipioActivo, String Presentacion, String Laboratorio) {
+    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, String PrincipioActivo, String Presentacion, String Laboratorio, String lote, String fechaVencimiento) {
         this.ID_Producto = ID_Producto;
         this.NombreProducto = NombreProducto;
         this.Categoria = Categoria;
@@ -45,6 +50,8 @@ public class Producto {
         this.PrincipioActivo = PrincipioActivo;
         this.Presentacion = Presentacion;
         this.Laboratorio = Laboratorio;
+        this.lote = lote;
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     // Getters y Setters
@@ -102,6 +109,22 @@ public class Producto {
 
     public void setLaboratorio(String Laboratorio) {
         this.Laboratorio = Laboratorio;
+    }
+
+    public String getLote() {
+        return lote;
+    }
+
+    public void setLote(String lote) {
+        this.lote = lote;
+    }
+
+    public String getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     @Override
