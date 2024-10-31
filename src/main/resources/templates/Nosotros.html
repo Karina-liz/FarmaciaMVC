@@ -39,10 +39,16 @@
                  <li><a href="#">Catalogo</a></li>
                  <li><a href="#" class="active">Nosotros</a></li>
                  <li><a href="#">Contacto</a></li>
-                 <li th:if="${nombreCliente}">
-                     <span>Bienvenido(a) [[${nombreCliente}]]</span>
-                     <a th:href="@{/logout}" class="btn btn-danger btn-sm ms-2">Cerrar Sesión</a>
-                 </li>
+                 
+                 <li class="nav-item dropdown" th:if="${nombreCliente}">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>Bienvenido(a) [[${nombreCliente}]]</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a th:href="@{/logout}" class="btn">Cerrar Sesión</a></li>
+                  </ul>
+                </li>
+        
                  <li th:unless="${nombreCliente}">
                      <a th:href="@{/login}">Inicia Sesion</a>
                  </li>
