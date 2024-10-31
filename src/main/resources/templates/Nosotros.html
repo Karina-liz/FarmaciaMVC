@@ -41,9 +41,10 @@
                  <li><a href="#">Contacto</a></li>
                  <li th:if="${nombreCliente}">
                      <span>Bienvenido(a) [[${nombreCliente}]]</span>
+                     <a th:href="@{/logout}" class="btn btn-danger btn-sm ms-2">Cerrar Sesión</a>
                  </li>
                  <li th:unless="${nombreCliente}">
-                     <a th:href="@{/login}">Inicia Sesión</a>
+                     <a th:href="@{/login}">Inicia Sesion</a>
                  </li>
                  <span class="btn-compra"><i class="fa-solid fa-cart-shopping"></i></span>
              </ul>
