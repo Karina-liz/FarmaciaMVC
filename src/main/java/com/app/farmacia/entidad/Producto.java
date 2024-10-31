@@ -1,5 +1,4 @@
 package com.app.farmacia.entidad;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,12 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Producto")
     private Long ID_Producto;
 
     @Column(name = "NombreProducto", nullable = false, length = 100)
@@ -34,10 +32,16 @@ public class Producto {
     @Column(name = "Laboratorio", nullable = false, length = 50)
     private String Laboratorio;
 
+    @Column(name = "lote", nullable = false, length = 6)
+    private String lote;
+
+    @Column(name = "fecha_vencimiento", nullable = false)
+    private String fechaVencimiento;
+
     public Producto() {
     }
 
-    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, String PrincipioActivo, String Presentacion, String Laboratorio) {
+    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, String PrincipioActivo, String Presentacion, String Laboratorio, String lote, String fechaVencimiento) {
         this.ID_Producto = ID_Producto;
         this.NombreProducto = NombreProducto;
         this.Categoria = Categoria;
@@ -45,6 +49,8 @@ public class Producto {
         this.PrincipioActivo = PrincipioActivo;
         this.Presentacion = Presentacion;
         this.Laboratorio = Laboratorio;
+        this.lote = lote;
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     // Getters y Setters
@@ -104,10 +110,26 @@ public class Producto {
         this.Laboratorio = Laboratorio;
     }
 
+    public String getLote() {
+        return lote;
+    }
+
+    public void setLote(String lote) {
+        this.lote = lote;
+    }
+
+    public String getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
     @Override
     public String toString() {
-        return "Producto [idProducto=" + ID_Producto + ", nombreProducto=" + NombreProducto + ", categoria=" + Categoria + 
+        return "Producto [idProducto=" + ID_Producto + ", NombreProducto=" + NombreProducto + ", categoria=" + Categoria + 
                 ", precioVenta=" + PrecioVenta + ", principioActivo=" + PrincipioActivo + ", presentacion=" + Presentacion + 
-                ", laboratorio=" + Laboratorio + "]";
+                ", laboratorio=" + Laboratorio + ", lote=" + lote + ", fechaVencimiento ="+ fechaVencimiento + "]";
     }
 }

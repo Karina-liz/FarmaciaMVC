@@ -1,0 +1,32 @@
+body{
+  background-image:url(../Imagenes/Fondo.jpg) ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.navbar-custom {
+        background-color: red;
+      }
+.navbar-custom .nav-link, .navbar-custom .navbar-brand {
+        color: white;
+      }
+.btn-custom {
+        background-color: red;
+        color: white;
+        border: black;
+        border-right: 20px;
+        
+      }
+.btn-custom:hover {
+        background-color: darkred;
+        color: white;
+      }
+.nav-item:hover {
+        background-color: darkred;
+        color: white;
+        border-radius: 20%;
+      }     
+.logo{
+    border-radius: 100%;
+}      

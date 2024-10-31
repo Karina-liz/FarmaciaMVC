@@ -24,7 +24,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 
     @Override
     public Producto obtenerProductoPorId(Long id) {
-        return productoDAO.findById(id).orElse(null);
+        return productoDAO.findById(id).get();
     }
 
     @Override

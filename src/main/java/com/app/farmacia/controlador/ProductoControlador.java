@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.app.farmacia.servicio.ProductoServicio;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.app.farmacia.entidad.Producto;
 
 @Controller
@@ -17,9 +16,9 @@ public class ProductoControlador {
     private ProductoServicio ProductoServicio;
 
     // Petición GET para listar productos
-    @GetMapping("/productos")
+    @GetMapping({"/productos", "/"})
     public String listarProductos(Model modelo) {
-        modelo.addAttribute("productos", ProductoServicio.listarProductos());
+        modelo.addAttribute("producto", ProductoServicio.listarProductos());
         return "productos"; // retorna el archivo de productos.html
     }
 
@@ -53,6 +52,7 @@ public class ProductoControlador {
         productoExistente.setPrincipioActivo(producto.getPrincipioActivo());
         productoExistente.setPresentacion(producto.getPresentacion());
         productoExistente.setLaboratorio(producto.getLaboratorio());
+        
 
         ProductoServicio.actualizarProducto(productoExistente);
 
