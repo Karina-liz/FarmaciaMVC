@@ -7,6 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+
+
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -15,24 +22,34 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "El nombre es requerido")
     @Column(name = "nombres", nullable = false, length = 50)
     private String nombres;
 
+    @NotBlank(message = "El apellido es requerido")
     @Column(name = "apellidos", nullable = false, length = 50)
     private String apellidos;
 
+    @NotBlank(message = "El DNI es requerido")
+    @Pattern(regexp = "^[0-9]{8}$", message = "El DNI debe tener 8 dígitos numéricos")
     @Column(name = "dni", nullable = false, length = 8, unique = true)
     private String dni;
 
+    @NotEmpty(message = "El correo es requerido")
+    @Email(message = "El correo no es valido")
     @Column(name = "email", nullable = false, length = 50, unique = true)
     private String email;
 
+    @NotBlank(message = "La clave es requerida")
     @Column(name = "clave", nullable = false, length = 50)
     private String clave;
 
-    @Column(name = "celular", nullable = false, length = 9)
+    @NotBlank(message = "El telefono es requerido")
+    @Pattern(regexp = "^[0-9]{7}|[0-9]{9}$", message = "Debe ser teléfono o celular")
+    @Column(name = "telefono", nullable = false, length = 9)
     private int telefono;
 
+    @NotBlank(message = "La direccion es requerida")
     @Column(name = "direccion", nullable = false, length = 50)
     private String direccion;
 

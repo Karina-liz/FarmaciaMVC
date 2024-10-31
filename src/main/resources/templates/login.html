@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org"/>
+  <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio de Sesión</title>
 
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./login_registro.css" />
+  <link rel="stylesheet" href="/css/login_registro.css" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -38,7 +38,7 @@
       <button class="btn-invitado" type="submit" value="invitado" name="btnInvitado">Modo Invitado</button>
       
       <div class="remember-forgot-r">
-        <a href="#">¿Aún no tienes una cuenta? Regístrate</a>
+        <a th:href="@{/clientes/nuevo}">¿Aún no tienes una cuenta? Regístrate</a>
       </div>
     </form>
   </div>

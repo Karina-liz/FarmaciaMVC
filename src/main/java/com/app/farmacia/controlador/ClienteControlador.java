@@ -5,12 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.app.farmacia.entidad.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.app.farmacia.servicio.ClienteServicio;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-
+import java.time.LocalDateTime;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 
 @Controller
 public class ClienteControlador {
@@ -33,14 +33,18 @@ public class ClienteControlador {
     }
 
     @PostMapping("/clientes/nuevo")
-    public String guardarCliente(@ModelAttribute("cliente") Cliente cliente, RedirectAttributes redirectAttributes) {
+    public String guardarCliente(@Validated Cliente cliente, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "crear_cliente";
+        }
+        cliente.setFechaRegistro(LocalDateTime.now());
         clienteServicio.guardarCliente(cliente);
         redirectAttributes.addFlashAttribute("msExito", "Te has registrado exitosamente");
-        return "redirect:/clientes";
+        return "login";
     }
 /*  
     @GetMapping("/empleados/editar/{id}")
-    public String mostrarFormularioDeEditar(@PathVariable Long id, Model modelo) {
+    public String mostrarFormularioDeEditar(@PathVariable Integer id, Model modelo) {
         modelo.addAttribute("empleado", empleadoServicio.obtenerEmpleadoPorId(id));
         return "editar_empleado";
     }

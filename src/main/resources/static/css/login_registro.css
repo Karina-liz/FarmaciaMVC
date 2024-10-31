@@ -11,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url(./img/fondologin.jpg) no-repeat;
+  background: url("/img/fondologin.jpg") no-repeat;
   background-size: cover;
   background-position: right;
 }
@@ -191,7 +191,7 @@ border: none;
 
 @media screen and (max-width: 990px){
   body {
-    background: url(./img/fondologin.jpg) no-repeat;
+    background: url("/img/fondologin.jpg") no-repeat;
     background-color: rgb(19, 23, 36);
     background-size: cover;
     background-position: right;
