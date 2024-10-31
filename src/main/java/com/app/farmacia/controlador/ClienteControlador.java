@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDateTime;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ClienteControlador {
@@ -20,9 +22,15 @@ public class ClienteControlador {
     // peticion get para listar clientes
 
     @GetMapping({ "/clientes"})
-    public String listarClientes(Model modelo) {
+    public String listarClientes(Model modelo, HttpSession session) {
+        String puesto = (String) session.getAttribute("empleadoPuesto");
+        
+        if (puesto == null || !puesto.toLowerCase().equals("administrador")) {
+            return "redirect:/login";
+        }
+        
         modelo.addAttribute("clientes", clienteServicio.listarClientes());
-        return "clientes"; // retorna el archivo de 
+        return "clientes";
     }
 
     @GetMapping("/clientes/nuevo")
@@ -48,37 +56,15 @@ public class ClienteControlador {
         }
     }
 
-
-/*  
-    @GetMapping("/empleados/editar/{id}")
-    public String mostrarFormularioDeEditar(@PathVariable Integer id, Model modelo) {
-        modelo.addAttribute("empleado", empleadoServicio.obtenerEmpleadoPorId(id));
-        return "editar_empleado";
+    @GetMapping("/clientes/{id}")
+    public String eliminarCliente(@PathVariable Integer id, HttpSession session) {
+        String puesto = (String) session.getAttribute("empleadoPuesto");
+        
+        if (puesto == null || !puesto.toLowerCase().equals("administrador")) {
+            return "redirect:/login";
+        }
+        
+        clienteServicio.eliminarCliente(id);
+        return "redirect:/clientes";
     }
-
-    @PostMapping("/empleados/{id}")
-    public String actualizarEmpleado(@PathVariable Long id, @ModelAttribute("empleado") Empleado empleado,
-            Model modelo) {
-        Empleado empleadoExistente = empleadoServicio.obtenerEmpleadoPorId(id);
-        empleadoExistente.setId(id);
-        empleadoExistente.setNombre(empleado.getNombre());
-        empleadoExistente.setApellido(empleado.getApellido());
-        empleadoExistente.setClave(empleado.getClave());
-        empleadoExistente.setDni(empleado.getDni());
-        empleadoExistente.setEmail(empleado.getEmail());
-        empleadoExistente.setTelefono(empleado.getTelefono());
-        empleadoExistente.setPuesto(empleado.getPuesto());
-        empleadoExistente.setSalario(empleado.getSalario());
-
-        empleadoServicio.actualizarEmpleado(empleadoExistente);
-
-        return "redirect:/empleados";
-    }
-
-    @GetMapping("/empleados/{id}")
-    public String eliminarEmpleado(@PathVariable Long id) {
-        empleadoServicio.eliminarEmpleado(id);
-        return "redirect:/empleados";
-    }
-*/
 }
