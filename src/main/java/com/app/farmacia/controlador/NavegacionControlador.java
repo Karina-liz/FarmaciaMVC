@@ -28,12 +28,11 @@ public class NavegacionControlador {
         Cliente cliente = clienteServicio.buscarPorEmail(email);
         
         if (cliente != null && cliente.getClave().equals(password)) {
-            // Usuario válido - guardar en sesión
             session.setAttribute("clienteId", cliente.getId());
             session.setAttribute("clienteEmail", cliente.getEmail());
-            return "Nosotros"; // Redirige a la página principal
+            model.addAttribute("nombreCliente", cliente.getNombres());
+            return "redirect:/nosotros";
         } else {
-            // Usuario inválido
             model.addAttribute("error", "Correo o contraseña incorrectos");
             return "login";
         }
@@ -45,7 +44,15 @@ public class NavegacionControlador {
     }
 
     @GetMapping("/nosotros")
-    public String mostrarNosotros() {
+    public String mostrarNosotros(Model model, HttpSession session) {
+        String email = (String) session.getAttribute("clienteEmail");
+        
+        if (email != null) {
+            Cliente cliente = clienteServicio.buscarPorEmail(email);
+            if (cliente != null) {
+                model.addAttribute("nombreCliente", cliente.getNombres());
+            }
+        }
         return "Nosotros";
     }
 

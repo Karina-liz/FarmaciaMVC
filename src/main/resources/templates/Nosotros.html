@@ -39,7 +39,12 @@
                  <li><a href="#">Catalogo</a></li>
                  <li><a href="#" class="active">Nosotros</a></li>
                  <li><a href="#">Contacto</a></li>
-                 <li><a th:href="@{/login}">Inicia Sesion</a></li>
+                 <li th:if="${nombreCliente}">
+                     <span>Bienvenido(a) [[${nombreCliente}]]</span>
+                 </li>
+                 <li th:unless="${nombreCliente}">
+                     <a th:href="@{/login}">Inicia Sesión</a>
+                 </li>
                  <span class="btn-compra"><i class="fa-solid fa-cart-shopping"></i></span>
              </ul>
          </div>
@@ -49,7 +54,7 @@
      <figure class="img-header">
          <div class="welcome">
             
-            <h4>"¡Tú salud es nuestra prioridad!"</h4>
+            <h4>"¡Tu salud es nuestra prioridad!"</h4>
             <h2><a href="#">
               <i class="fa-solid fa-house-medical"></i>
                 Mi Ahorro Pharma
@@ -106,14 +111,14 @@
         </div>
 
         <div class="gallery-content">
-            <div class="img-card"><img src="img/img 1.jpeg" alt="Buffet"></div>
-            <div class="img-card"><img src="img/img 2.jpeg" alt="Cocina"></div>
-            <div class="img-card"><img src="img/img 3.jpeg" alt="Cumpleaños"></div>
-            <div class="img-card"><img src="img/img 4.jpg" alt="Comensales"></div>
-            <div class="img-card"><img src="img/img 5.jpg" alt="En Pandemia"></div>
-            <div class="img-card"><img src="img/img 6.jpeg" alt="Barra"></div>
-            <div class="img-card"><img src="img/img 7.jpeg" alt="Ingredientes de Calidad"></div>
-            <div class="img-card"><img src="img/img 8.jpg" alt="Anton Ego"></div>
+            <div class="img-card"><img src="img/img 1.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 2.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 3.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 4.jpg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 5.jpg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 6.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 7.jpeg" alt="Mi Ahorro Pharma"></div>
+            <div class="img-card"><img src="img/img 8.jpg" alt="Mi Ahorro Pharma"></div>
 
         </div>
 
