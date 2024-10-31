@@ -38,4 +38,9 @@ public class ClienteServicioImpl implements ClienteServicio {
     public void eliminarCliente(Integer id) {
         clienteRepositorio.deleteById(id);
     }
+
+    @Override
+    public Cliente buscarPorEmail(String email) {
+        return clienteRepositorio.findByEmail(email);
+    }
 }

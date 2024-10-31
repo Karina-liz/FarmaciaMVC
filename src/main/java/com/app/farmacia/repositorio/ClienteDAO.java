@@ -5,5 +5,5 @@ import com.app.farmacia.entidad.Cliente;
 
 @Repository
 public interface ClienteDAO extends JpaRepository<Cliente, Integer> {
-
+    Cliente findByEmail(String email);
 }

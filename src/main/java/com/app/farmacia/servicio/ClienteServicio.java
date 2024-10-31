@@ -14,4 +14,6 @@ public interface ClienteServicio {
     public Cliente actualizarCliente(Cliente cliente);
     
     public void eliminarCliente(Integer id);
+
+    public Cliente buscarPorEmail(String email);
 }
