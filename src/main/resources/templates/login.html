@@ -13,7 +13,7 @@
 <body>
   
   <div class="container login">
-    <form>
+    <form th:action="@{/login}" method="post">
       <h1>¡Hola!</h1>
       <hr>
       <div class="msExito" th:if="${msExito}">
@@ -35,7 +35,7 @@
 <br>
       
       <button class="btn-login" type="submit" value="login" name="btnLogin">Iniciar Sesión</button>
-      <button class="btn-invitado" type="submit" value="invitado" name="btnInvitado">Modo Invitado</button>
+      <a th:href="@{/nosotros}" class="btn-invitado">Modo Invitado</a>
       
       <div class="remember-forgot-r">
         <a th:href="@{/clientes/nuevo}">¿Aún no tienes una cuenta? Regístrate</a>

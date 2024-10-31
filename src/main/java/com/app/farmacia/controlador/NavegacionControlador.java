@@ -16,6 +16,10 @@ public class NavegacionControlador {
         return "empleados"; 
     }
 
+    @GetMapping("/nosotros")
+    public String mostrarNosotros() {
+        return "Nosotros";
+    }
 
     @GetMapping("/ListaLote")
     public String mostrarMenuL(Model model) {
