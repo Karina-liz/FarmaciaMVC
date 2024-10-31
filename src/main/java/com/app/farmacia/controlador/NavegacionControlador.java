@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class NavegacionControlador {
-    @GetMapping("/")
+    @GetMapping({"/", "/login"})
     public String mostrarLogin() {
         return "login";  // llama a login.html
     }

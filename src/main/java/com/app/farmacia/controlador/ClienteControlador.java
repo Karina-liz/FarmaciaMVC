@@ -47,6 +47,8 @@ public class ClienteControlador {
             return "crear_cliente";
         }
     }
+
+
 /*  
     @GetMapping("/empleados/editar/{id}")
     public String mostrarFormularioDeEditar(@PathVariable Integer id, Model modelo) {
