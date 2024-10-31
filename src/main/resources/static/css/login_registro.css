@@ -35,6 +35,19 @@ body {
   padding: 30px 40px;
 }
 
+.msExito {
+  text-align: center;
+  color: #1139d6;
+  text-shadow: 2px 2px 4px rgba(21, 12, 192, 0.5);
+}
+
+.msError{
+  text-align: center;
+  color: #c60000;
+  text-shadow: 2px 2px 4px rgba(192, 15, 12, 0.5);
+}
+
+
 .container h1 {
   font-size: 36px;
   text-align: left;

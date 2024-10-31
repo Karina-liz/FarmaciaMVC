@@ -12,9 +12,12 @@
 <body>
   
   <div class="container">
-    <form action="" method="post" th:object="${cliente}">
+    <form th:action="@{/clientes/nuevo}" method="post" th:object="${cliente}">
       <h1>¡Bienvenido!</h1>
       <hr>
+      <div class="msError" th:if="${msError}">
+          <p th:text="${msError}"></p>
+      </div>
       
       <p>Ingresa tus datos para registrarte</p>
 

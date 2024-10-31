@@ -35,12 +35,18 @@ public class ClienteControlador {
     @PostMapping("/clientes/nuevo")
     public String guardarCliente(@Validated Cliente cliente, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("msError", "Error en el registro. Por favor verifica los datos.");
             return "crear_cliente";
         }
-        cliente.setFechaRegistro(LocalDateTime.now());
-        clienteServicio.guardarCliente(cliente);
-        redirectAttributes.addFlashAttribute("msExito", "Te has registrado exitosamente");
-        return "login";
+        try {
+            cliente.setFechaRegistro(LocalDateTime.now());
+            clienteServicio.guardarCliente(cliente);
+            redirectAttributes.addFlashAttribute("msExito", "Te has registrado exitosamente");
+            return "redirect:/login";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("msError", "Error: El correo ya está registrado");
+            return "crear_cliente";
+        }
     }
 /*  
     @GetMapping("/empleados/editar/{id}")
