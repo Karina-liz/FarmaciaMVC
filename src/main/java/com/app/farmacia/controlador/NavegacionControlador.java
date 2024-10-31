@@ -5,15 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class NavegacionControlador {
+    
     @GetMapping("/ListaEmpleados")
     public String mostrarMenuE(Model model) {
         return "empleados"; 
-    }
-
-
-    @GetMapping("/ListaLote")
-    public String mostrarMenuL(Model model) {
-        return "lotes"; 
     }
 
     @GetMapping("/ListaProductos")

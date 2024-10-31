@@ -18,7 +18,7 @@ public class ProductoControlador {
     // Petición GET para listar productos
     @GetMapping({"/productos", "/"})
     public String listarProductos(Model modelo) {
-        modelo.addAttribute("productos", ProductoServicio.listarProductos());
+        modelo.addAttribute("producto", ProductoServicio.listarProductos());
         return "productos"; // retorna el archivo de productos.html
     }
 
@@ -52,6 +52,7 @@ public class ProductoControlador {
         productoExistente.setPrincipioActivo(producto.getPrincipioActivo());
         productoExistente.setPresentacion(producto.getPresentacion());
         productoExistente.setLaboratorio(producto.getLaboratorio());
+        
 
         ProductoServicio.actualizarProducto(productoExistente);
 

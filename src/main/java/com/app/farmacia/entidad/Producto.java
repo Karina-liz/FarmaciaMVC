@@ -7,12 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Producto")
     private Long ID_Producto;
 
     @Column(name = "NombreProducto", nullable = false, length = 100)
@@ -129,8 +128,8 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto [idProducto=" + ID_Producto + ", nombreProducto=" + NombreProducto + ", categoria=" + Categoria + 
+        return "Producto [idProducto=" + ID_Producto + ", NombreProducto=" + NombreProducto + ", categoria=" + Categoria + 
                 ", precioVenta=" + PrecioVenta + ", principioActivo=" + PrincipioActivo + ", presentacion=" + Presentacion + 
-                ", laboratorio=" + Laboratorio + "]";
+                ", laboratorio=" + Laboratorio + ", lote=" + lote + ", fechaVencimiento ="+ fechaVencimiento + "]";
     }
 }

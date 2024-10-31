@@ -23,3 +23,19 @@
 .logo{
 border-radius: 100%;
 }   
+
+div.container{
+  display: flex;
+  background-color: whitesmoke;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 1%;
+  justify-content: center;
+  }
+
+div.container > div.card {
+  background-color: gray;
+  color: black;
+  margin: 20px;
+  padding: 15px; font-size: 1.5em;
+}
