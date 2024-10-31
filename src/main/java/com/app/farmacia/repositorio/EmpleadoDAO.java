@@ -6,5 +6,5 @@ import com.app.farmacia.entidad.Empleado;
 
 @Repository
 public interface EmpleadoDAO extends JpaRepository<Empleado, Long> {
-
+    Empleado findByEmail(String email);
 }

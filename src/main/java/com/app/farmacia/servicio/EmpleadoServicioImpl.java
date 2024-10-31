@@ -37,5 +37,10 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     public void eliminarEmpleado(Long id) {
         empleadoRepositorio.deleteById(id);
     }
+
+    @Override
+    public Empleado buscarPorEmail(String email) {
+        return empleadoRepositorio.findByEmail(email);
+    }
 }
 

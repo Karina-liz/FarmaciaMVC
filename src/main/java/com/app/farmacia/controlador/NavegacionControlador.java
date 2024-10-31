@@ -8,12 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.servlet.http.HttpSession;
 import com.app.farmacia.entidad.Cliente;
+import com.app.farmacia.entidad.Empleado;
 import com.app.farmacia.servicio.ClienteServicio;
+import com.app.farmacia.servicio.EmpleadoServicio;
 
 @Controller
 public class NavegacionControlador {
     @Autowired
     private ClienteServicio clienteServicio;
+    @Autowired
+    private EmpleadoServicio empleadoServicio;
 
     @GetMapping({"/", "/login"})
     public String mostrarLogin() {
@@ -25,17 +29,28 @@ public class NavegacionControlador {
                              @RequestParam("password") String password,
                              Model model,
                              HttpSession session) {
-        Cliente cliente = clienteServicio.buscarPorEmail(email);
+        // Primero intentar autenticar como empleado
+        Empleado empleado = empleadoServicio.buscarPorEmail(email);
+        if (empleado != null && empleado.getClave().equals(password)) {
+            if (empleado.getPuesto().toLowerCase().equals("administrador")) {
+                session.setAttribute("empleadoId", empleado.getId());
+                session.setAttribute("empleadoEmail", empleado.getEmail());
+                session.setAttribute("empleadoPuesto", empleado.getPuesto());
+                return "redirect:/empleados";
+            }
+        }
         
+        // Si no es administrador, intentar autenticar como cliente
+        Cliente cliente = clienteServicio.buscarPorEmail(email);
         if (cliente != null && cliente.getClave().equals(password)) {
             session.setAttribute("clienteId", cliente.getId());
             session.setAttribute("clienteEmail", cliente.getEmail());
             model.addAttribute("nombreCliente", cliente.getNombres());
             return "redirect:/nosotros";
-        } else {
-            model.addAttribute("error", "Correo o contraseña incorrectos");
-            return "login";
         }
+        
+        model.addAttribute("error", "Correo o contraseña incorrectos");
+        return "login";
     }
 
     @GetMapping("/ListaEmpleados")

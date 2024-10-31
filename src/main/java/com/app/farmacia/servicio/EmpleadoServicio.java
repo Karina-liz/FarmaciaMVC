@@ -13,4 +13,6 @@ public interface EmpleadoServicio {
     public Empleado actualizarEmpleado(Empleado empleado);
     
     public void eliminarEmpleado(Long id);
+
+    Empleado buscarPorEmail(String email);
 }

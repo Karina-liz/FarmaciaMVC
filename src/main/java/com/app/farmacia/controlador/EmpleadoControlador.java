@@ -8,6 +8,7 @@ import com.app.farmacia.entidad.Empleado;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class EmpleadoControlador {
@@ -17,7 +18,13 @@ public class EmpleadoControlador {
     // peticion get para listar empleados
 
     @GetMapping({ "/empleados"})
-    public String listarEmpleados(Model modelo) {
+    public String listarEmpleados(Model modelo, HttpSession session) {
+        String puesto = (String) session.getAttribute("empleadoPuesto");
+        
+        if (puesto == null || !puesto.toLowerCase().equals("administrador")) {
+            return "redirect:/login";
+        }
+        
         modelo.addAttribute("empleados", empleadoServicio.listarEmpleados());
         return "empleados"; // retorna el archivo de empleados.html
     }
