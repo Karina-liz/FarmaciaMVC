@@ -21,7 +21,7 @@ public class Cliente {
     @Column(name = "apellidos", nullable = false, length = 50)
     private String apellidos;
 
-    @Column(name = "dni", nullable = false, length = 50, unique = true)
+    @Column(name = "dni", nullable = false, length = 8, unique = true)
     private String dni;
 
     @Column(name = "email", nullable = false, length = 50, unique = true)
@@ -30,7 +30,7 @@ public class Cliente {
     @Column(name = "clave", nullable = false, length = 50)
     private String clave;
 
-    @Column(name = "celular", nullable = false, length = 11)
+    @Column(name = "telefono", nullable = false, length = 9)
     private int telefono;
 
     @Column(name = "direccion", nullable = false, length = 50)
@@ -38,6 +38,7 @@ public class Cliente {
 
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDateTime fechaRegistro;
+
 
     public Integer getId() {
         return id;

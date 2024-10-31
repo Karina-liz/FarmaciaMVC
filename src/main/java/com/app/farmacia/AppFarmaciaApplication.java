@@ -22,7 +22,7 @@ public class AppFarmaciaApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cliente cliente = new Cliente("Juan", "Perez", "123456789", "juan@gmail.com", "123456", 987654321, "Av. Principal 123", LocalDateTime.now());
+		Cliente cliente = new Cliente("Juan", "Perez", "12345787", "juan1@gmail.com", "123456", 987654321, "Av. Principal 123", LocalDateTime.now());
 		clienteDao.save(cliente);
 	}
 
