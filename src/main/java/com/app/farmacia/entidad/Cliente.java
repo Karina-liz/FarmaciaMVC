@@ -11,6 +11,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 
 
@@ -44,9 +47,8 @@ public class Cliente {
     @Column(name = "clave", nullable = false, length = 50)
     private String clave;
 
-    @NotBlank(message = "El telefono es requerido")
-    @Pattern(regexp = "^[0-9]{7}|[0-9]{9}$", message = "Debe ser teléfono o celular")
-    @Column(name = "telefono", nullable = false, length = 9)
+    @NotNull(message = "El teléfono es requerido")
+    @Column(name = "telefono", nullable = false)
     private int telefono;
 
     @NotBlank(message = "La direccion es requerida")

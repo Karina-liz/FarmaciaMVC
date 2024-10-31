@@ -23,16 +23,15 @@
 
       <div class="input-box">
         <label for="nombres">Nombres:</label>
-        <input type="text" id="nombres" placeholder="Ingresa tu nombre" required th:field="*{nombres}" />
-      </div>
-      <div th:errors="*{nombres}">
+        <input type="text" id="nombres" placeholder="Ingresa tu nombre" required th:field="*{nombres}" th:class="${#fields.hasErrors('nombres')} ? 'error-input' : ''" />
+        <div class="error" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></div>
       </div>
 
       <div class="input-box">
         <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" placeholder="Ingresa tu apellido" required th:field="*{apellidos}" />
+        <input type="text" id="apellidos" placeholder="Ingresa tus apellidos" required th:field="*{apellidos}" th:class="${#fields.hasErrors('apellidos')} ? 'error-input' : ''" />
+        <div class="error" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
       </div>
-      <div th:errors="*{apellidos}"></div>
 
       <div class="input-box">
         <label for="dni">DNI:</label>

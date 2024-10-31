@@ -223,3 +223,13 @@ border: none;
 		justify-content: center;
 	}
 }
+
+.error-input {
+    border-color: #C00F0C !important;
+}
+
+.error {
+    color: #C00F0C;
+    font-size: 12px;
+    margin-top: 5px;
+}
