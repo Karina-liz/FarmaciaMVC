@@ -33,17 +33,17 @@ public class ClienteControlador {
     }
 
     @PostMapping("/clientes/nuevo")
-    public String guardarCliente(@Validated Cliente cliente, BindingResult bindingResult, Model modelo) {
+    public String guardarCliente(@Validated Cliente cliente, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "crear_cliente";
         }
-        
         try {
             cliente.setFechaRegistro(LocalDateTime.now());
             clienteServicio.guardarCliente(cliente);
-            return "redirect:/?msExito=Te has registrado exitosamente";
+            redirectAttributes.addFlashAttribute("msExito", "Te has registrado exitosamente");
+            return "redirect:/";
         } catch (Exception e) {
-            modelo.addAttribute("msError", "Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("msError", "Error: El correo ya está registrado");
             return "crear_cliente";
         }
     }

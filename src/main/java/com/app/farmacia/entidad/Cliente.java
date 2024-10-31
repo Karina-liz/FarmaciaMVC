@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import com.app.farmacia.validacion.TelefonoValido;
 
 
 
@@ -48,6 +49,7 @@ public class Cliente {
     private String clave;
 
     @NotNull(message = "El teléfono es requerido")
+    @TelefonoValido
     @Column(name = "telefono", nullable = false)
     private int telefono;
 
