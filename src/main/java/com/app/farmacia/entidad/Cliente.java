@@ -17,12 +17,12 @@ import com.app.farmacia.validacion.TelefonoValido;
 
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer ID_Cliente;
 
     @NotBlank(message = "El nombre es requerido")
     @Column(name = "nombres", nullable = false, length = 50)
@@ -59,11 +59,11 @@ public class Cliente {
     private LocalDateTime fechaRegistro;
 
     public Integer getId() {
-        return id;
+        return ID_Cliente;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.ID_Cliente = id;
     }
 
     public String getNombres() {
@@ -132,7 +132,7 @@ public class Cliente {
 
     public Cliente(Integer id, String nombres, String apellidos, String dni, String email, String clave, int telefono,
             String direccion, LocalDateTime fechaRegistro) {
-        this.id = id;
+        this.ID_Cliente = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -161,7 +161,7 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return "Cliente [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", email=" + email + ", clave=" + clave + ", telefono=" + telefono + ", direccion=" + direccion + ", fechaRegistro=" + fechaRegistro + "]";
+        return "Cliente [id=" + ID_Cliente + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", email=" + email + ", clave=" + clave + ", telefono=" + telefono + ", direccion=" + direccion + ", fechaRegistro=" + fechaRegistro + "]";
     }
 
 

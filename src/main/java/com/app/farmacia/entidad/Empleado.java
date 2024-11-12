@@ -4,16 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "empleado")
 public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID_Empleado;
 
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
@@ -39,13 +41,17 @@ public class Empleado {
     @Column(name = "salario", nullable = false)
     private double salario;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_Local")
+    private Local local;
+
     public Empleado() {
         
     }
 
     public Empleado(Long id, String nombre, String apellido, String email, String clave, int telefono, String puesto,
             String dni, double salario) {
-        this.id = id;
+        this.ID_Empleado = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -71,11 +77,11 @@ public class Empleado {
     } */
 
     public Long getId() {
-        return id;
+        return ID_Empleado;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.ID_Empleado= id;
     }
 
     public String getNombre() {
@@ -144,7 +150,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", clave="
+        return "Empleado [id=" + ID_Empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", clave="
                 + clave + ", telefono=" + telefono + ", puesto=" + puesto + ", dni=" + dni + ", salario=" + salario
                 + "]";
     }
