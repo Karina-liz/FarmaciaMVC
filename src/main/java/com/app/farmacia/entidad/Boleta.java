@@ -23,6 +23,57 @@ public class Boleta {
     @JoinColumn(name = "ID_Pago", referencedColumnName = "ID_Pago")
     private Pago pago;
 
+    public String getIdBoleta() {
+        return idBoleta;
+    }
+
+    public void setIdBoleta(String idBoleta) {
+        this.idBoleta = idBoleta;
+    }
+
+    public BigDecimal getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(BigDecimal costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    public BigDecimal getVuelto() {
+        return vuelto;
+    }
+
+    public void setVuelto(BigDecimal vuelto) {
+        this.vuelto = vuelto;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
+    public Boleta() {
+    }
+
+    public Boleta(String idBoleta, BigDecimal costoTotal, BigDecimal vuelto, Venta venta, Pago pago) {
+        this.idBoleta = idBoleta;
+        this.costoTotal = costoTotal;
+        this.vuelto = vuelto;
+        this.venta = venta;
+        this.pago = pago;
+    }
+
     // Getters y Setters
     
 }

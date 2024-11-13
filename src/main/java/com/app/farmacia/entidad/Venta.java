@@ -35,6 +35,86 @@ public class Venta {
     @Column(name = "Importe", nullable = false, precision = 7,scale = 2)
     private BigDecimal importe;
 
+    public String getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(String idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public LocalDateTime getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(LocalDateTime fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getTipoVenta() {
+        return tipoVenta;
+    }
+
+    public void setTipoVenta(String tipoVenta) {
+        this.tipoVenta = tipoVenta;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
+    public Integer getCantidadProducto() {
+        return cantidadProducto;
+    }
+
+    public void setCantidadProducto(Integer cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
+    }
+
+    public BigDecimal getImporte() {
+        return importe;
+    }
+
+    public void setImporte(BigDecimal importe) {
+        this.importe = importe;
+    }
+
+    public Venta() {
+    }
+
+    public Venta(String idVenta, LocalDateTime fechaVenta, Cliente cliente, String tipoVenta, Local local, Pago pago,
+            Integer cantidadProducto, BigDecimal importe) {
+        this.idVenta = idVenta;
+        this.fechaVenta = fechaVenta;
+        this.cliente = cliente;
+        this.tipoVenta = tipoVenta;
+        this.local = local;
+        this.pago = pago;
+        this.cantidadProducto = cantidadProducto;
+        this.importe = importe;
+    }
+
     // Getters y Setters
+    
 }
 
