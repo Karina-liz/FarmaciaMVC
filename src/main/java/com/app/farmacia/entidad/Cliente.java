@@ -58,6 +58,8 @@ public class Cliente {
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDateTime fechaRegistro;
 
+    // Getters y Setters
+
     public Integer getId() {
         return ID_Cliente;
     }

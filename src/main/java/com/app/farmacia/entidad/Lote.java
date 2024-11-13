@@ -33,6 +33,7 @@ public class Lote {
         this.fechaVencimiento = fechaVencimiento;
     }
 
+    // Getters y Setters
     public Long getIdLote() {
         return idLote;
     }

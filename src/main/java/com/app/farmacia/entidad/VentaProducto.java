@@ -17,6 +17,8 @@ public class VentaProducto {
     @JoinColumn(name = "ID_Producto")
     private Producto producto;
 
+    // Getters y Setters
+
     public String getIdVP() {
         return idVP;
     }
@@ -50,7 +52,7 @@ public class VentaProducto {
         this.producto = producto;
     }
 
-    // Getters y Setters
+    
     
 }
 

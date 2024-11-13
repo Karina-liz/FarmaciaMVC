@@ -35,6 +35,8 @@ public class Venta {
     @Column(name = "Importe", nullable = false, precision = 7,scale = 2)
     private BigDecimal importe;
 
+
+    // Getters y Setters
     public String getIdVenta() {
         return idVenta;
     }
@@ -114,7 +116,7 @@ public class Venta {
         this.importe = importe;
     }
 
-    // Getters y Setters
+    
     
 }
 

@@ -15,6 +15,7 @@ public class Pago {
     @Column(name = "TipoPago", nullable = false, length = 10)
     private String tipoPago;
 
+    // Getters y Setters
     public String getIdPago() {
         return idPago;
     }
@@ -48,7 +49,7 @@ public class Pago {
         this.tipoPago = tipoPago;
     }
 
-    // Getters y Setters
+    
     
 }
 

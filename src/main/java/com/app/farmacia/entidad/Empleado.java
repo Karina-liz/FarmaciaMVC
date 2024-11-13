@@ -77,6 +77,7 @@ public class Empleado {
         this.salario = salario;
     } */
 
+    // Getters y Setters
     public Long getId() {
         return ID_Empleado;
     }

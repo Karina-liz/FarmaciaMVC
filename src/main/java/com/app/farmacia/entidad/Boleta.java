@@ -23,6 +23,7 @@ public class Boleta {
     @JoinColumn(name = "ID_Pago", referencedColumnName = "ID_Pago")
     private Pago pago;
 
+    // Getters y Setters
     public String getIdBoleta() {
         return idBoleta;
     }
