@@ -60,6 +60,7 @@ public class Empleado {
         this.puesto = puesto;
         this.dni = dni;
         this.salario = salario;
+        
     }
 
     //constructor para crear un empleado sin id (PRUEBA)

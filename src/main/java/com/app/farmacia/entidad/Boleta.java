@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 @Table(name = "boleta")
 public class Boleta {
     @Id
-    @Column(name = "ID_Boleta")
+    @Column(name = "ID_Boleta", length = 50)
     private String idBoleta;
 
-    @Column(name = "CostoTotal", nullable = false)
+    @Column(name = "CostoTotal", nullable = false,precision = 7,scale = 2)
     private BigDecimal costoTotal;
 
-    @Column(name = "Vuelto", nullable = false)
+    @Column(name = "Vuelto", nullable = false, precision = 5,scale = 2)
     private BigDecimal vuelto;
 
     @ManyToOne
@@ -24,4 +24,5 @@ public class Boleta {
     private Pago pago;
 
     // Getters y Setters
+    
 }

@@ -18,7 +18,7 @@ public class Venta {
     @JoinColumn(name = "ID_Cliente")
     private Cliente cliente;
 
-    @Column(name = "TipoVenta", nullable = false)
+    @Column(name = "TipoVenta", nullable = false, length = 10)
     private String tipoVenta;
 
     @ManyToOne
@@ -29,10 +29,10 @@ public class Venta {
     @JoinColumn(name = "ID_Pago")
     private Pago pago;
 
-    @Column(name = "CantidadProducto", nullable = false)
+    @Column(name = "CantidadProducto", nullable = false, length = 50)
     private Integer cantidadProducto;
 
-    @Column(name = "Importe", nullable = false)
+    @Column(name = "Importe", nullable = false, precision = 7,scale = 2)
     private BigDecimal importe;
 
     // Getters y Setters
