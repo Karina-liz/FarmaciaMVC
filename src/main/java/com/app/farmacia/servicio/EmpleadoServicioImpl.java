@@ -6,10 +6,9 @@ import org.springframework.stereotype.Service;
 import com.app.farmacia.entidad.Empleado;
 import com.app.farmacia.repositorio.EmpleadoDAO;
 
-
 @Service
 public class EmpleadoServicioImpl implements EmpleadoServicio {
-    
+
     @Autowired
     private EmpleadoDAO empleadoRepositorio;
 
@@ -43,4 +42,3 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
         return empleadoRepositorio.findByEmail(email);
     }
 }
-
