@@ -60,6 +60,7 @@ public class Empleado {
         this.puesto = puesto;
         this.dni = dni;
         this.salario = salario;
+        //this.local = new Local("L01", "PPSede_1", "Av -A", "Puente Piedra"); // Asignar Local con id_local "L01"
         
     }
 

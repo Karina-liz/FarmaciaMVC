@@ -75,6 +75,10 @@ public class Boleta {
         this.pago = pago;
     }
 
-    // Getters y Setters
+    @Override
+    public String toString() {
+        return "Boleta{" + "idBoleta='" + idBoleta + '\'' + ", costoTotal=" + costoTotal + 
+        ", vuelto=" + vuelto + ", venta=" + venta + ", pago=" + pago + '}';
     
+    }
 }

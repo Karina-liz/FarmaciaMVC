@@ -17,7 +17,6 @@ public class Local {
 
     @Column(name = "Cuidad", nullable = false , length = 50)
     private String cuidad;
-    
     // Getters y Setters
 
     public String getIdLocal() {
