@@ -1,20 +1,42 @@
 package com.app.farmacia.controlador;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.app.farmacia.servicio.ProductoServicio;
+import com.app.farmacia.validacion.ProductoValidator;
+import org.springframework.validation.BindingResult;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import com.app.farmacia.entidad.Producto;
 
 @Controller
+
 public class ProductoControlador {
 
     @Autowired
     private ProductoServicio ProductoServicio;
+
+    @Autowired
+    private ProductoValidator ProductoValidator;
+
+    @Value("${app.upload.dir}")
+    private String uploadDir;
 
     // Petición GET para listar productos
     @GetMapping("/productos")
@@ -31,8 +53,44 @@ public class ProductoControlador {
     }
 
     @PostMapping("/productos")
-    public String guardarProducto(@ModelAttribute("producto") Producto producto) {
-        ProductoServicio.guardarProducto(producto);
+    public String guardarProducto(@ModelAttribute("producto") @Valid Producto producto,
+                                  BindingResult bindingResult,
+                                  @RequestParam(value = "foto", required = false) MultipartFile foto) {
+        // Validar el producto
+        ProductoValidator.validate(producto, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "crear_productos"; // Regresar al formulario si hay errores
+        }
+
+        // Asegúrate de que el directorio exista
+        try {
+            Files.createDirectories(Paths.get(uploadDir));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        if (foto != null && !foto.isEmpty()) {
+            try {
+                String nombreArchivo = Path.of(foto.getOriginalFilename()).getFileName().toString();
+                Path ruta = Paths.get(uploadDir, nombreArchivo);
+                Files.copy(foto.getInputStream(), ruta, StandardCopyOption.REPLACE_EXISTING);
+                producto.setFoto("/uploads/" + nombreArchivo);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Si no se subió una foto, se puede dejar el campo como null
+            producto.setFoto(null);
+        }
+        
+        // Guardar el producto
+        try {
+            ProductoServicio.guardarProducto(producto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejar el error, tal vez redirigir a un formulario de error
+        }
         return "redirect:/productos";
     }
 
