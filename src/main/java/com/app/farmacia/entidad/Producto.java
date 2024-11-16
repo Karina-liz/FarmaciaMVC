@@ -36,6 +36,9 @@ public class Producto {
     @Column(name = "Laboratorio", nullable = false, length = 50)
     private String Laboratorio;
 
+    @Column(name = "Foto", nullable = true)
+    private String Foto;
+
     @ManyToOne
     @JoinColumn(name = "ID_Lote")
     private Lote lote;
@@ -43,7 +46,8 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, String PrincipioActivo, String Presentacion, String Laboratorio) {
+    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, 
+    String PrincipioActivo, String Presentacion, String Laboratorio, String Foto) {
         this.ID_Producto = ID_Producto;
         this.NombreProducto = NombreProducto;
         this.Categoria = Categoria;
@@ -51,6 +55,7 @@ public class Producto {
         this.PrincipioActivo = PrincipioActivo;
         this.Presentacion = Presentacion;
         this.Laboratorio = Laboratorio;
+        this.Foto = Foto;
     }
 
     // Getters y Setters
@@ -110,10 +115,18 @@ public class Producto {
         this.Laboratorio = Laboratorio;
     }
 
+    public String getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(String Foto) {
+        this.Foto = Foto;
+    }
+
     @Override
     public String toString() {
         return "Producto [idProducto=" + ID_Producto + ", nombreProducto=" + NombreProducto + ", categoria=" + Categoria + 
                 ", precioVenta=" + PrecioVenta + ", principioActivo=" + PrincipioActivo + ", presentacion=" + Presentacion + 
-                ", laboratorio=" + Laboratorio + "]";
+                ", laboratorio=" + Laboratorio +  ", foto=" + Foto +"]";
     }
 }
