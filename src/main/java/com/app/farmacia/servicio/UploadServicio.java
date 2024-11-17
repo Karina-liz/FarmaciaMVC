@@ -15,23 +15,21 @@ import java.util.Objects;
 @Service
 public class UploadServicio {
 
-    private final String url= "upload/";
+    private final String url = "upload/";
 
     public String saveUpload(MultipartFile file) throws IOException {
-        if (!file.isEmpty()){
-            byte [] bytes = file.getBytes();
+        if (!file.isEmpty()) {
+            byte[] bytes = file.getBytes();
             String encode = URLEncoder.encode(Objects.requireNonNull(file.getOriginalFilename()), StandardCharsets.UTF_8);
             Path path = Paths.get(url + encode);
             Files.write(path, bytes);
             return encode;
         }
-
         return null;
     }
 
-    public void deleteUpload(String nombre){
-        File file = new File (url + nombre);
+    public void deleteUpload(String nombre) {
+        File file = new File(url + nombre);
         file.delete();
     }
-
 }
