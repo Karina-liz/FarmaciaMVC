@@ -2,17 +2,11 @@ package com.app.farmacia.controlador;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.app.farmacia.servicio.ProductoServicio;
-
-import org.springframework.validation.BindingResult;
-
-import jakarta.validation.Valid;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -21,16 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.farmacia.entidad.Producto;
 
 @Controller
-
 public class ProductoControlador {
 
     @Autowired
     private ProductoServicio productoServicio;
-
- 
-
-    @Value("${app.upload.dir}")
-    private String uploadDir;
 
     // Petición GET para listar productos
     @GetMapping("/productos")
