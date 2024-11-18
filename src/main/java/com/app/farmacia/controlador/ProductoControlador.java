@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.app.farmacia.servicio.ProductoServicio;
-import com.app.farmacia.validacion.ProductoValidator;
+
 import org.springframework.validation.BindingResult;
 
 import jakarta.validation.Valid;
@@ -32,8 +32,7 @@ public class ProductoControlador {
     @Autowired
     private ProductoServicio ProductoServicio;
 
-    @Autowired
-    private ProductoValidator ProductoValidator;
+ 
 
     @Value("${app.upload.dir}")
     private String uploadDir;
@@ -57,7 +56,7 @@ public class ProductoControlador {
                                   BindingResult bindingResult,
                                   @RequestParam(value = "foto", required = false) MultipartFile foto) {
         // Validar el producto
-        ProductoValidator.validate(producto, bindingResult);
+    
 
         if (bindingResult.hasErrors()) {
             return "crear_productos"; // Regresar al formulario si hay errores
