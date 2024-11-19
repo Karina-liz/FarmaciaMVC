@@ -1,5 +1,7 @@
 package com.app.farmacia.entidad;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,17 +22,18 @@ public class Lote {
     private String lote;
 
     @Column(name = "fecha_vencimiento", nullable = false)
-    private String fechaVencimiento;
+    private LocalDate fechaVencimiento;
 
     public Lote() {
     }
 
-    public Lote(Long idLote, String lote, String fechaVencimiento) {
+    public Lote(Long idLote, String lote, LocalDate fechaVencimiento) {
         this.idLote = idLote;
         this.lote = lote;
         this.fechaVencimiento = fechaVencimiento;
     }
 
+    // Getters y Setters
     public Long getIdLote() {
         return idLote;
     }
@@ -47,11 +50,11 @@ public class Lote {
         this.lote = lote;
     }
 
-    public String getFechaVencimiento() {
+    public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(String fechaVencimiento) {
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 @Table(name = "boleta")
 public class Boleta {
     @Id
-    @Column(name = "ID_Boleta")
+    @Column(name = "ID_Boleta", length = 50)
     private String idBoleta;
 
-    @Column(name = "CostoTotal", nullable = false)
+    @Column(name = "CostoTotal", nullable = false,precision = 7,scale = 2)
     private BigDecimal costoTotal;
 
-    @Column(name = "Vuelto", nullable = false)
+    @Column(name = "Vuelto", nullable = false, precision = 5,scale = 2)
     private BigDecimal vuelto;
 
     @ManyToOne
@@ -24,4 +24,61 @@ public class Boleta {
     private Pago pago;
 
     // Getters y Setters
+    public String getIdBoleta() {
+        return idBoleta;
+    }
+
+    public void setIdBoleta(String idBoleta) {
+        this.idBoleta = idBoleta;
+    }
+
+    public BigDecimal getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(BigDecimal costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    public BigDecimal getVuelto() {
+        return vuelto;
+    }
+
+    public void setVuelto(BigDecimal vuelto) {
+        this.vuelto = vuelto;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
+    public Boleta() {
+    }
+
+    public Boleta(String idBoleta, BigDecimal costoTotal, BigDecimal vuelto, Venta venta, Pago pago) {
+        this.idBoleta = idBoleta;
+        this.costoTotal = costoTotal;
+        this.vuelto = vuelto;
+        this.venta = venta;
+        this.pago = pago;
+    }
+
+    @Override
+    public String toString() {
+        return "Boleta{" + "idBoleta='" + idBoleta + '\'' + ", costoTotal=" + costoTotal + 
+        ", vuelto=" + vuelto + ", venta=" + venta + ", pago=" + pago + '}';
+    
+    }
 }

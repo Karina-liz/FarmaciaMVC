@@ -46,7 +46,8 @@ public class Empleado {
     private Local local;
 
     public Empleado() {
-        
+        // Asignar Local con id_local "L01" por defecto
+        this.local = new Local("L01","PPSede_1" ,"Av -A", "Puente Piedra");
     }
 
     public Empleado(Long id, String nombre, String apellido, String email, String clave, int telefono, String puesto,
@@ -60,6 +61,9 @@ public class Empleado {
         this.puesto = puesto;
         this.dni = dni;
         this.salario = salario;
+        
+        // Asignar Local con id_local "L01"
+        this.local = new Local("L01","PPSede_1" ,"Av -A", "Puente Piedra"); // Asegúrate de que el Local se guarde correctamente
     }
 
     //constructor para crear un empleado sin id (PRUEBA)
@@ -76,6 +80,7 @@ public class Empleado {
         this.salario = salario;
     } */
 
+    // Getters y Setters
     public Long getId() {
         return ID_Empleado;
     }
@@ -148,11 +153,15 @@ public class Empleado {
         this.salario = salario;
     }
 
+    public Local getLocal() {
+        return local;
+    }
+
     @Override
     public String toString() {
         return "Empleado [id=" + ID_Empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", clave="
                 + clave + ", telefono=" + telefono + ", puesto=" + puesto + ", dni=" + dni + ", salario=" + salario
-                + "]";
+                + ", local=" + local + "]";
     }
 
 }

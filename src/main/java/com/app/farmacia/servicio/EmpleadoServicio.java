@@ -15,4 +15,5 @@ public interface EmpleadoServicio {
     public void eliminarEmpleado(Long id);
 
     Empleado buscarPorEmail(String email);
+
 }
