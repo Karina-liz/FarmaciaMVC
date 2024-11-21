@@ -68,7 +68,7 @@ public class NavegacionControlador {
                 model.addAttribute("nombreCliente", cliente.getNombres());
             }
         }
-        return "Nosotros";
+        return "nosotros";
     }
 
     @GetMapping("/ListaLote")

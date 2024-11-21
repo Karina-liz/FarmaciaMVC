@@ -30,7 +30,7 @@ body {
 /* Contenido de productos */
 .content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales */
+    grid-template-columns: auto auto auto; /* Crea 4 columnas iguales */
     gap: 20px; /* Espacio entre las tarjetas */
     padding: 10px;
 }
