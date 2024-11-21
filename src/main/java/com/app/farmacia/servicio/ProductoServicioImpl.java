@@ -49,4 +49,16 @@ public class ProductoServicioImpl implements ProductoServicio {
     public void eliminarProducto(Long id) {
         productoDAO.deleteById(id);
     }
+
+    @Autowired
+    private ProductoDAO ProductoDAO;
+
+    public List<Producto> obtenerTodosLosProductos() {
+        return ProductoDAO.findAll();
+    }
+
+    public List<Producto> obtenerProductosPorCategoria(String Categoria) {
+        return ProductoDAO.findByCategoria(Categoria);
+    }
+
 }

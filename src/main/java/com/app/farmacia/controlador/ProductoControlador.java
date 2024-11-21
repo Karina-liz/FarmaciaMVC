@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.app.farmacia.servicio.ProductoServicio;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
 
 import com.app.farmacia.entidad.Producto;
+
 
 @Controller
 public class ProductoControlador {
@@ -57,4 +62,22 @@ public class ProductoControlador {
         productoServicio.eliminarProducto(id);
         return "redirect:/productos";
     }
+
+    @GetMapping("/catalogo")
+    public String mostrarCatalogo(Model model) {
+        model.addAttribute("productos", productoServicio.listarProductos());
+        return "catalogo";
+    }
+
+    @RequestMapping("/productos/categoria")
+    @ResponseBody
+    public List<Producto> obtenerProductosPorCategoria(@RequestParam String Categoria) {
+        // Obtén los productos según la categoría seleccionada
+        if (Categoria.equals("Todos")) {
+            return productoServicio.obtenerTodosLosProductos();
+        } else {
+            return productoServicio.obtenerProductosPorCategoria(Categoria);
+        }
+    }
+
 }
