@@ -30,8 +30,8 @@ body {
 /* Contenido de productos */
 .content {
     display: grid;
-    grid-template-columns: auto auto auto; /* Crea 4 columnas iguales */
-    gap: 20px; /* Espacio entre las tarjetas */
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
     padding: 10px;
 }
 
@@ -39,7 +39,7 @@ body {
 .card {
     border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
-    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+    box-sizing: border-box;
 }
 
 /* Efecto hover */

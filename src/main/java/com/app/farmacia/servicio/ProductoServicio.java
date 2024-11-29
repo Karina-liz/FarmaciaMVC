@@ -13,7 +13,7 @@ public interface ProductoServicio {
 
     Producto guardarProducto(Producto producto, MultipartFile file) throws IOException;
 
-    Producto obtenerProductoPorId(Long id);
+   Producto obtenerProductoPorId(Long id);
 
     Producto actualizarProducto(Producto producto, MultipartFile file) throws IOException;
 
