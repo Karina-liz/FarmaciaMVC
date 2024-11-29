@@ -70,16 +70,21 @@
                     <option value="Cuidado Personal">Higiene Personal</option>
                 </select>
             </div>
+
             <div class="col-md-9">
                 <h2>Productos</h2>
-                <div class="content">
-                    <div class="card" th:each="producto : ${productos}">
-                        <img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" 
-                             alt="Imagen del Producto" class="card-img">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${producto.NombreProducto}"></h5>
-                            <p class="card-text" th:text="'S/ ' + ${producto.PrecioVenta}"></p>
-                            <a href="#" class="btn btn-outline-danger">Agregar</a>
+                <div class="row" th:if="${!#lists.isEmpty(productos)}" th:each="producto : ${productos}">
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%;">
+                            <img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" 
+                                 alt="Imagen del Producto" 
+                                 class="card-img-top"
+                                 style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${producto.NombreProducto}">Nombre del Producto</h5>
+                                <p class="card-text" th:text="'S/ ' + ${producto.PrecioVenta}">Precio de Venta</p>
+                                <a href="#" class="btn btn-outline-danger">Agregar al Carrito</a>
+                            </div>
                         </div>
                     </div>
                 </div>
