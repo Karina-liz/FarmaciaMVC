@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Catalogo</title>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/catalogo.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -18,6 +19,7 @@
 
 </head>
 <body>
+    <!-- Navegation Menu -->
     <nav class="menu">
         <div class="logobox">
             <h1 class="logo">
@@ -54,7 +56,8 @@
     
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-3 col-12">
+            <!-- Sidebar (Filtros) -->
+            <div class="col-md-3">
                 <h2>Filtros</h2>
                 <form class="d-flex mb-3" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
@@ -67,21 +70,16 @@
                     <option value="Cuidado Personal">Higiene Personal</option>
                 </select>
             </div>
-
-            <div class="col-md-9 col-12">
+            <div class="col-md-9">
                 <h2>Productos</h2>
-                <div class="row" th:if="${!#lists.isEmpty(productos)}" th:each="producto : ${productos}">
-                    <div class="grid-container">
-                        <div class="card" style="width: 100%;">
-                            <img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" 
-                                 alt="Imagen del Producto" 
-                                 class="card-img-top"
-                                 style="height: 200px; object-fit: cover;">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${producto.NombreProducto}">Nombre del Producto</h5>
-                                <p class="card-text" th:text="'S/ ' + ${producto.PrecioVenta}">Precio de Venta</p>
-                                <a href="#" class="btn btn-outline-danger">Agregar al Carrito</a>
-                            </div>
+                <div class="content">
+                    <div class="card" th:each="producto : ${productos}">
+                        <img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" 
+                             alt="Imagen del Producto" class="card-img">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${producto.NombreProducto}"></h5>
+                            <p class="card-text" th:text="'S/ ' + ${producto.PrecioVenta}"></p>
+                            <a href="#" class="btn btn-outline-danger">Agregar</a>
                         </div>
                     </div>
                 </div>

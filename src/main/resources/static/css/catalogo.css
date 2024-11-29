@@ -10,20 +10,15 @@ body {
     padding-top: 100px; /* Ajusta la compensación del navbar */
 }
 
-.grid-container{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-}
-
-/* Filtros */
+/* Sidebar (Columna de filtros) */
 .sidebar {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    height: 100%;
-    box-sizing: border-box;
+    height: 100%; /* Asegura que la altura sea consistente */
+    box-sizing: border-box; /* Incluye padding en el cálculo del tamaño */
 }
 
 .sidebar h2 {
@@ -32,11 +27,19 @@ body {
     color: #007bff;
 }
 
-/* Card style */
+/* Contenido de productos */
+.content {
+    display: grid;
+    grid-template-columns: auto auto auto; /* Crea 4 columnas iguales */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 10px;
+}
+
+/* Tarjetas */
 .card {
     border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
 }
 
 /* Efecto hover */
@@ -45,23 +48,15 @@ body {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsividad para mostrar las cards correctamente */
-@media (width: 768px) {
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .col-md-3 {
-        width: 50%; /* 2 cards por fila */
+/* Para dispositivos pequeños */
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
     }
 }
 
-@media (width: 480px) {
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .col-md-3, .col-sm-6 {
-        width: 100%; /* 1 card por fila */
+@media (max-width: 480px) {
+    .content {
+        grid-template-columns: 1fr; /* Una columna por fila en pantallas muy pequeñas */
     }
 }

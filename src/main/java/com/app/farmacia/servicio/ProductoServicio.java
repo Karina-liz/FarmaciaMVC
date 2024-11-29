@@ -18,8 +18,8 @@ public interface ProductoServicio {
     Producto actualizarProducto(Producto producto, MultipartFile file) throws IOException;
 
     void eliminarProducto(Long id) throws IOException;
-
+    
     List<Producto> obtenerTodosLosProductos();
     
-    List<Producto> obtenerProductosPorCategoria(String Categoria);
+    List<Producto> obtenerProductosPorCategoria(Long categoriaId);
 }

@@ -8,6 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
+import java.math.BigDecimal;
+
+
 
 @Entity
 @Table(name = "producto")
@@ -21,11 +25,12 @@ public class Producto {
     @Column(name = "NombreProducto", nullable = false, length = 100)
     private String NombreProducto;
 
-    @Column(name = "Categoria", nullable = false, length = 50)
-    private String Categoria;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 
-    @Column(name = "PrecioVenta", nullable = false)
-    private double PrecioVenta;
+    @Column(name = "PrecioVenta", nullable = false, precision = 10, scale = 2)
+    private BigDecimal PrecioVenta;
 
     @Column(name = "PrincipioActivo", nullable = false, length = 100)
     private String PrincipioActivo;
@@ -43,19 +48,24 @@ public class Producto {
     @JoinColumn(name = "ID_Lote")
     private Lote lote;
 
+    @Column(name = "FechaVencimiento", nullable = false)
+    private LocalDate FechaVencimiento;
+
     public Producto() {
     }
 
-    public Producto(Long ID_Producto, String NombreProducto, String Categoria, double PrecioVenta, 
-    String PrincipioActivo, String Presentacion, String Laboratorio, String Foto) {
+    public Producto(Long ID_Producto, String NombreProducto, BigDecimal PrecioVenta,
+                    String PrincipioActivo, String Presentacion, String Laboratorio, String Foto, 
+                    Lote lote, LocalDate FechaVencimiento) {
         this.ID_Producto = ID_Producto;
         this.NombreProducto = NombreProducto;
-        this.Categoria = Categoria;
         this.PrecioVenta = PrecioVenta;
         this.PrincipioActivo = PrincipioActivo;
         this.Presentacion = Presentacion;
         this.Laboratorio = Laboratorio;
         this.Foto = Foto;
+        this.lote = lote;
+        this.FechaVencimiento = FechaVencimiento;
     }
 
     // Getters y Setters
@@ -75,19 +85,19 @@ public class Producto {
         this.NombreProducto = NombreProducto;
     }
 
-    public String getCategoria() {
-        return Categoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategoria(String Categoria) {
-        this.Categoria = Categoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
-    public double getPrecioVenta() {
+    public BigDecimal getPrecioVenta() {
         return PrecioVenta;
     }
 
-    public void setPrecioVenta(double PrecioVenta) {
+    public void setPrecioVenta(BigDecimal PrecioVenta) {
         this.PrecioVenta = PrecioVenta;
     }
 
@@ -123,10 +133,27 @@ public class Producto {
         this.Foto = Foto;
     }
 
-    @Override
-    public String toString() {
-        return "Producto [idProducto=" + ID_Producto + ", nombreProducto=" + NombreProducto + ", Categoria=" + Categoria + 
-                ", precioVenta=" + PrecioVenta + ", principioActivo=" + PrincipioActivo + ", presentacion=" + Presentacion + 
-                ", laboratorio=" + Laboratorio +  ", foto=" + Foto +"]";
+    public Lote getLote() {
+        return lote;
     }
+
+    public void setLote(Lote lote) {
+        this.lote = lote;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return FechaVencimiento;
+    }
+
+    public void setFechaVencimiento(LocalDate FechaVencimiento) {
+        this.FechaVencimiento = FechaVencimiento;
+    }
+
+    @Override
+public String toString() {
+    return "Producto [idProducto=" + ID_Producto + ", nombreProducto=" + NombreProducto + ", categoria=" + categoria +
+            ", precioVenta=" + PrecioVenta + ", principioActivo=" + PrincipioActivo + ", presentacion=" + Presentacion +
+            ", laboratorio=" + Laboratorio + ", foto=" + Foto + ", lote=" + lote + ", fechaVencimiento=" + FechaVencimiento + "]";
+}
+
 }
