@@ -1,6 +1,7 @@
 package com.app.farmacia.controlador;
 
 import com.app.farmacia.entidad.Categoria;
+import com.app.farmacia.repositorio.CategoriaRepository;
 import com.app.farmacia.servicio.CategoriaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ public class CategoriaControlador {
 
     @Autowired
     private CategoriaServicio categoriaServicio;
+
+    @Autowired
+    private CategoriaRepository CategoriaRepository;
 
     // Listar todas las categorías
     @GetMapping
@@ -60,4 +64,9 @@ public String mostrarFormularioCrearCategoria(Model model) {
         categoriaServicio.eliminarCategoria(id);
         return "redirect:/categorias";
     }
+
+    public Categoria obtenerCategoriaPorNombre(String nombre) {
+        return CategoriaRepository.findByNombre(nombre);
+    }
+
 }

@@ -34,7 +34,7 @@
             <ul class="lists">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#" class="active">Catalogo</a></li>
-                <li><a th:href="@{/Nosotros}">Nosotros</a></li>
+                <li><a th:href="@{/nosotros}">Nosotros</a></li>
                 <li><a href="#footer-section">Contacto</a></li>
                 
                 <li class="nav-item dropdown" th:if="${nombreCliente}">
@@ -59,17 +59,18 @@
             <!-- Sidebar (Filtros) -->
             <div class="col-md-3">
                 <h2>Filtros</h2>
-                <form class="d-flex mb-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                <form class="d-flex mb-3" role="search" method="get" action="/catalogo">
+                    <input class="form-control me-2" type="search" placeholder="Buscar producto" name="buscar" value="" aria-label="Search">
                     <button class="btn btn-outline-danger" type="submit">Buscar</button>
                 </form>
-                <select id="categorySelect" class="form-select" onchange="filterByCategory()">
-                    <option value="Todos">Todos</option>
-                    <option value="Medicamentos">Medicamento</option>
-                    <option value="Vitaminas">Vitamina</option>
-                    <option value="Cuidado Personal">Higiene Personal</option>
+                <select id="categorySelect" class="form-select" name="categoria">
+                    <option value="">Todos</option>
+                    <th:block th:each="categoria : ${categorias}">
+                        <option th:value="${categoria.nombre}" th:text="${categoria.nombre}"></option>
+                    </th:block>
                 </select>
             </div>
+
             <div class="col-md-9">
                 <h2>Productos</h2>
                 <div class="content">
@@ -86,5 +87,7 @@
             </div>
         </div>
     </div>
+    <script src="js/Filtros.js" defer></script>
 </body>
 </html>
+

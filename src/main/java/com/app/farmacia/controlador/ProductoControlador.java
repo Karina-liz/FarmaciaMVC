@@ -6,13 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.app.farmacia.entidad.Categoria;
+import com.app.farmacia.entidad.Cliente;
 import com.app.farmacia.entidad.Producto;
 import com.app.farmacia.servicio.ProductoServicio; // Asegúrate de que esta clase exista
+import com.app.farmacia.servicio.ClienteServicio;
+import jakarta.servlet.http.HttpSession;
 
 import com.app.farmacia.servicio.CategoriaServicio; // Asegúrate de que esta clase exista
 import java.io.IOException;
@@ -23,6 +25,9 @@ public class ProductoControlador {
 
     @Autowired
     private ProductoServicio productoServicio;
+
+    @Autowired
+    private ClienteServicio clienteServicio;
 
     @Autowired
     private CategoriaServicio categoriaServicio;
@@ -93,15 +98,22 @@ public class ProductoControlador {
 
     // Petición GET para mostrar el catálogo de productos
     @GetMapping("/catalogo")
-    public String mostrarCatalogo(Model model) {
-        model.addAttribute("productos", productoServicio.listarProductos());
-        return "catalogo"; // Vista para mostrar el catálogo
+public String mostrarCatalogo(Model model, HttpSession session) {
+    // Verificar si el email del cliente está en la sesión
+    String email = (String) session.getAttribute("clienteEmail");
+
+    if (email != null) {
+        Cliente cliente = clienteServicio.buscarPorEmail(email);
+        if (cliente != null) {
+            // Agregar al modelo el nombre del cliente, si es necesario
+            model.addAttribute("nombreCliente", cliente.getNombres());
+        }
     }
 
-    // Petición GET para obtener productos por categoría
-    @GetMapping("/productos/categoria")
-    public List<Producto> obtenerProductosPorCategoria(@RequestParam("Categoria") Long categoriaId) {
-        // Obtener productos según la categoría
-        return productoServicio.obtenerProductosPorCategoria(categoriaId); // Utiliza el ID de categoría
-    }
+    // Agregar los productos al modelo
+    model.addAttribute("productos", productoServicio.listarProductos());
+    
+    // Devolver la vista del catálogo
+    return "catalogo";
+}
 }

@@ -4,10 +4,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.app.farmacia.repositorio.CategoriaRepository;
 import com.app.farmacia.entidad.Categoria;
 import com.app.farmacia.entidad.Producto;
 import com.app.farmacia.repositorio.ProductoDAO;
+import com.app.farmacia.repositorio.CategoriaRepository;
 
 
 import java.io.IOException;

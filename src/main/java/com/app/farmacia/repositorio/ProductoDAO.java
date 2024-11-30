@@ -11,4 +11,3 @@ import com.app.farmacia.entidad.Categoria;
 public interface ProductoDAO extends JpaRepository<Producto, Long> {
     List<Producto> findByCategoria(Categoria categoria);
 }
-

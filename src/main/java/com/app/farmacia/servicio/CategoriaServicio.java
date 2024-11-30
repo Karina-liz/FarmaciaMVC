@@ -10,5 +10,5 @@ public interface CategoriaServicio {
     void actualizarCategoria(Long id, Categoria categoria);
     void eliminarCategoria(Long id);
     List<Categoria> obtenerTodasLasCategorias();
-    // Otros métodos...
+    Categoria buscarPorNombre(String nombre);
 }

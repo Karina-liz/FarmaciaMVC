@@ -43,4 +43,9 @@ public class CategoriaServicioImpl implements CategoriaServicio {
     public List<Categoria> obtenerTodasLasCategorias() {
         return categoriaRepository.findAll();
     }
+
+    @Override
+    public Categoria buscarPorNombre(String nombre) {
+        return categoriaRepository.findByNombre(nombre);
+    }
 }
