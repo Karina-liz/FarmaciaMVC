@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('productoModal');
     const cantidadInput = document.getElementById('modalCantidad');
 
+    // Mostrar datos del producto en el modal
     modal.addEventListener('show.bs.modal', function (event) {
         const card = event.relatedTarget;
 
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('modalLaboratorio').textContent = card.getAttribute('data-laboratorio');
     });
 
+    // Incrementar y decrementar la cantidad en el modal
     document.getElementById('btnDecrement').onclick = function () {
         const value = parseInt(cantidadInput.value);
         if (value > 1) cantidadInput.value = value - 1;
@@ -24,44 +26,55 @@ document.addEventListener('DOMContentLoaded', function () {
         const value = parseInt(cantidadInput.value);
         cantidadInput.value = value + 1;
     };
-});
 
+    // Filtrar productos por nombre de búsqueda
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const categorySelect = document.getElementById('categorySelect');
 
+    // Función para actualizar la URL con los parámetros de búsqueda y categoría
+    function updateUrl() {
+        const searchQuery = searchInput.value; // Obtener el valor de búsqueda
+        const selectedCategory = categorySelect.value; // Obtener la categoría seleccionada
+        
+        let actionUrl = '/catalogo'; // La URL de base
 
+        // Agregar parámetros de búsqueda si existen
+        const params = [];
+        if (searchQuery) {
+            params.push('buscar=' + encodeURIComponent(searchQuery));
+        }
+        
+        if (selectedCategory) {
+            params.push('categoria=' + encodeURIComponent(selectedCategory));
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput'); // Campo de búsqueda
-    const searchButton = document.getElementById('searchButton'); // Botón de búsqueda
-    const productCards = document.querySelectorAll('.card'); // Todas las tarjetas de producto
+        // Si hay parámetros, agregar el "?" y los "&" para concatenarlos correctamente
+        if (params.length > 0) {
+            actionUrl += '?' + params.join('&');
+        }
 
-    // Función para filtrar productos
-    function filterProducts() {
-        const searchTerm = searchInput.value.toLowerCase(); // Obtener término de búsqueda en minúsculas
-
-        // Iterar sobre todas las tarjetas de producto
-        productCards.forEach(card => {
-            const productName = card.querySelector('.card-title').innerText.toLowerCase(); // Obtener nombre del producto
-            if (productName.includes(searchTerm)) {
-                // Mostrar la tarjeta si el nombre del producto incluye el término de búsqueda
-                card.style.display = 'block';
-            } else {
-                // Ocultar la tarjeta si no coincide con el término de búsqueda
-                card.style.display = 'none';
-            }
-        });
+        // Redirigir a la URL con los parámetros actualizados
+        window.location.href = actionUrl;
     }
 
-    // Evento de búsqueda cuando se presiona el botón
-    searchButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Evitar que el formulario se envíe y recargue la página
-        filterProducts(); // Filtrar productos
+    // Evento cuando se selecciona una categoría (filtro)
+    categorySelect.addEventListener('change', function () {
+        updateUrl(); // Actualiza la URL con la categoría seleccionada
     });
 
-    // Opcional: Filtrar productos cuando se presiona "Enter"
-    searchInput.addEventListener('keypress', function(event) {
+    // Evento para manejar la búsqueda con el botón
+    searchButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevenir el envío tradicional del formulario
+        updateUrl(); // Actualiza la URL con el valor de búsqueda y categoría
+    });
+
+    // Evento para manejar la búsqueda cuando se presiona "Enter"
+    searchInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
-            event.preventDefault();
-            filterProducts();
+            event.preventDefault(); // Prevenir el envío del formulario por defecto
+            updateUrl(); // Actualiza la URL con el valor de búsqueda y categoría
         }
     });
 });

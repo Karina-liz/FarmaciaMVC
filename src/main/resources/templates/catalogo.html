@@ -64,14 +64,12 @@
     <input class="form-control me-2" type="search" placeholder="Buscar producto" id="searchInput">
     <button class="btn btn-outline-danger" type="submit" id="searchButton">Buscar</button>
 </form>
-
-                
-                <select id="categorySelect" class="form-select" name="categoria">
-                    <option value="">Todos</option>
-                    <th:block th:each="categoria : ${categorias}">
-                        <option th:value="${categoria.nombre}" th:text="${categoria.nombre}"></option>
-                    </th:block>
-                </select>
+<select id="categorySelect" class="form-select" name="categoria">
+    <option value="">Todos</option>
+    <th:block th:each="categoria : ${categorias}">
+        <option th:value="${categoria.nombre}" th:text="${categoria.nombre}"></option>
+    </th:block>
+</select>
             </div>
             <!-- Productos -->
             <div class="col-md-9">

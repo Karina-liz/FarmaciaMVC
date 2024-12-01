@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 import com.app.farmacia.servicio.CategoriaServicio; // Asegúrate de que esta clase exista
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProductoControlador {
@@ -99,24 +100,46 @@ public class ProductoControlador {
 
     // Petición GET para mostrar el catálogo de productos
     @GetMapping("/catalogo")
-public String mostrarCatalogo(@RequestParam(required = false) String buscar, Model model, HttpSession session) {
+public String mostrarCatalogo(@RequestParam(required = false) String buscar,
+                               @RequestParam(required = false) String categoria,
+                               Model model, HttpSession session) {
+
     // Verificar si el email del cliente está en la sesión
     String email = (String) session.getAttribute("clienteEmail");
 
     if (email != null) {
         Cliente cliente = clienteServicio.buscarPorEmail(email);
         if (cliente != null) {
-            // Agregar al modelo el nombre del cliente, si es necesario
             model.addAttribute("nombreCliente", cliente.getNombres());
         }
     }
 
-    // Verificar si se realiza una búsqueda
-    if (buscar != null && !buscar.isEmpty()) {
-        model.addAttribute("productos", productoServicio.buscarPorNombre(buscar));
+    // Filtrar productos por búsqueda y/o categoría
+    List<Producto> productos;
+
+    if (buscar != null && !buscar.isEmpty() && categoria != null && !categoria.isEmpty()) {
+        // Si hay búsqueda y categoría, se filtra por ambas
+        productos = productoServicio.buscarPorNombre(buscar);
+        productos = productos.stream()
+            .filter(producto -> producto.getCategoria().getNombre().equalsIgnoreCase(categoria))
+            .collect(Collectors.toList());
+    } else if (buscar != null && !buscar.isEmpty()) {
+        // Si solo hay búsqueda, se filtra por nombre
+        productos = productoServicio.buscarPorNombre(buscar);
+    } else if (categoria != null && !categoria.isEmpty()) {
+        // Si solo hay categoría, se filtra por categoría
+        productos = productoServicio.buscarPorCategoria(categoria);
     } else {
-        model.addAttribute("productos", productoServicio.listarProductos());
+        // Si no hay filtros, se muestran todos los productos
+        productos = productoServicio.listarProductos();
     }
+
+    // Enviar los productos al modelo
+    model.addAttribute("productos", productos);
+
+    // Obtener las categorías disponibles
+    List<Categoria> categorias = productoServicio.listarCategorias();
+    model.addAttribute("categorias", categorias);
 
     // Devolver la vista del catálogo
     return "catalogo";

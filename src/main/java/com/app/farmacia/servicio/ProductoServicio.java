@@ -3,6 +3,8 @@ package com.app.farmacia.servicio;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.app.farmacia.entidad.Categoria;
 import com.app.farmacia.entidad.Producto;
 import java.io.IOException;
 
@@ -21,4 +23,8 @@ public interface ProductoServicio {
     List<Producto> obtenerTodosLosProductos();
 
     List<Producto> buscarPorNombre(String NombreProducto);
+
+    List<Producto> buscarPorCategoria(String categoria);
+
+    List<Categoria> listarCategorias();
 }
