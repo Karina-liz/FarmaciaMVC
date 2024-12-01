@@ -1,62 +1,45 @@
+/* Asegura que el navbar esté siempre debajo del modal */
+.navbar {
+    z-index: 1020; /* Nivel por debajo del modal */
+}
+
+/* Asegura que el modal siempre esté encima */
+.modal {
+    z-index: 1050 !important; /* Bootstrap usa este z-index para los modales */
+}
+
 body {
     font-family: 'Lora', serif;
-    background-color: #f8f9fa; /* Color de fondo suave */
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
-/* Contenedor principal */
-.container {
-    padding-top: 100px; /* Ajusta la compensación del navbar */
-}
-
-/* Sidebar (Columna de filtros) */
-.sidebar {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    height: 100%; /* Asegura que la altura sea consistente */
-    box-sizing: border-box; /* Incluye padding en el cálculo del tamaño */
-}
-
-.sidebar h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #007bff;
-}
-
-/* Contenido de productos */
-.content {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 20px;
-    padding: 10px;
-}
-
-/* Tarjetas */
 .card {
-    border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
-    box-sizing: border-box;
+    border-radius: 8px;
 }
 
-/* Efecto hover */
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Para dispositivos pequeños */
-@media (max-width: 768px) {
-    .content {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
-    }
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-@media (max-width: 480px) {
-    .content {
-        grid-template-columns: 1fr; /* Una columna por fila en pantallas muy pequeñas */
-    }
+.card-text {
+    margin-bottom: 10px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.text-danger {
+    font-size: 1.5rem;
+    font-weight: bold;
 }

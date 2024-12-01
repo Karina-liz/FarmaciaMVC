@@ -32,7 +32,7 @@
 
         <div class="list-container">
             <ul class="lists">
-                <li><a href="#">Inicio</a></li>
+                <li><a th:href="@{/inicio}">Inicio</a></li>
                 <li><a href="#" class="active">Catalogo</a></li>
                 <li><a th:href="@{/nosotros}">Nosotros</a></li>
                 <li><a href="#footer-section">Contacto</a></li>
@@ -56,11 +56,11 @@
     
     <div class="container mt-4">
         <div class="row">
-            <!-- Sidebar (Filtros) -->
+            <!-- Sidebar -->
             <div class="col-md-3">
                 <h2>Filtros</h2>
                 <form class="d-flex mb-3" role="search" method="get" action="/catalogo">
-                    <input class="form-control me-2" type="search" placeholder="Buscar producto" name="buscar" value="" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar producto" name="buscar">
                     <button class="btn btn-outline-danger" type="submit">Buscar</button>
                 </form>
                 <select id="categorySelect" class="form-select" name="categoria">
@@ -70,13 +70,18 @@
                     </th:block>
                 </select>
             </div>
-
+            <!-- Productos -->
             <div class="col-md-9">
                 <h2>Productos</h2>
                 <div class="content">
-                    <div class="card" th:each="producto : ${productos}">
-                        <img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" 
-                             alt="Imagen del Producto" class="card-img">
+                    <div class="card" th:each="producto : ${productos}" data-bs-toggle="modal" data-bs-target="#productoModal"
+                        th:data-foto="@{/upload/{nombre}(nombre=${producto.Foto})}"
+                        th:data-nombre="${producto.NombreProducto}"
+                        th:data-precio="${producto.PrecioVenta}"
+                        th:data-principio="${producto.PrincipioActivo}"
+                        th:data-presentacion="${producto.Presentacion}"
+                        th:data-laboratorio="${producto.Laboratorio}">
+                        <img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" alt="Imagen del Producto" class="card-img">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${producto.NombreProducto}"></h5>
                             <p class="card-text" th:text="'S/ ' + ${producto.PrecioVenta}"></p>
@@ -87,7 +92,37 @@
             </div>
         </div>
     </div>
-    <script src="js/Filtros.js" defer></script>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="productoModal" tabindex="-1" aria-labelledby="productoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img id="modalFoto" src="" alt="Foto del Producto" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="card-title" id="modalNombreProducto"></h5>
+                            <p class="card-text text-danger fs-4">S/ <span id="modalPrecioVenta"></span></p>
+                            <p class="card-text"><strong>Principio Activo:</strong> <span id="modalPrincipioActivo"></span></p>
+                            <p class="card-text"><strong>Presentación:</strong> <span id="modalPresentacion"></span></p>
+                            <p class="card-text"><strong>Laboratorio:</strong> <span id="modalLaboratorio"></span></p>
+                            <div class="d-flex align-items-center mt-3">
+                                <button class="btn btn-outline-danger me-3" id="btnDecrement">-</button>
+                                <input type="number" id="modalCantidad" value="1" min="1" class="form-control text-center" style="width: 60px;">
+                                <button class="btn btn-outline-danger ms-3" id="btnIncrement">+</button>
+                            </div>
+                            <button class="btn btn-danger mt-4 w-100">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/Catalogo.js" defer></script>
 </body>
 </html>
-
