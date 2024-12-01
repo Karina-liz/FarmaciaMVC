@@ -19,4 +19,6 @@ public interface ProductoServicio {
     void eliminarProducto(Long id) throws IOException;
     
     List<Producto> obtenerTodosLosProductos();
+
+    List<Producto> buscarPorNombre(String NombreProducto);
 }

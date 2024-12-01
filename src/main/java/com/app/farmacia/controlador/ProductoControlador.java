@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,7 +99,7 @@ public class ProductoControlador {
 
     // Petición GET para mostrar el catálogo de productos
     @GetMapping("/catalogo")
-public String mostrarCatalogo(Model model, HttpSession session) {
+public String mostrarCatalogo(@RequestParam(required = false) String buscar, Model model, HttpSession session) {
     // Verificar si el email del cliente está en la sesión
     String email = (String) session.getAttribute("clienteEmail");
 
@@ -110,9 +111,13 @@ public String mostrarCatalogo(Model model, HttpSession session) {
         }
     }
 
-    // Agregar los productos al modelo
-    model.addAttribute("productos", productoServicio.listarProductos());
-    
+    // Verificar si se realiza una búsqueda
+    if (buscar != null && !buscar.isEmpty()) {
+        model.addAttribute("productos", productoServicio.buscarPorNombre(buscar));
+    } else {
+        model.addAttribute("productos", productoServicio.listarProductos());
+    }
+
     // Devolver la vista del catálogo
     return "catalogo";
 }

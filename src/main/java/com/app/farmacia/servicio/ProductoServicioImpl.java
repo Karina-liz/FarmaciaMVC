@@ -52,12 +52,12 @@ public class ProductoServicioImpl implements ProductoServicio {
         productoDAO.deleteById(id);
     }
 
-    @Autowired
-    private ProductoDAO ProductoDAO;
-
     public List<Producto> obtenerTodosLosProductos() {
-        return ProductoDAO.findAll();
+        return productoDAO.findAll();
     }
     
-    
+    @Override
+    public List<Producto> buscarPorNombre(String NombreProducto) {
+        return productoDAO.findByNombreProductoContainingIgnoreCase(NombreProducto);
+    }
 }
