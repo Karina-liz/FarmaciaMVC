@@ -4,10 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.app.farmacia.entidad.Categoria;
 import com.app.farmacia.entidad.Producto;
 import com.app.farmacia.repositorio.ProductoDAO;
-import com.app.farmacia.repositorio.CategoriaRepository;
 
 
 import java.io.IOException;
@@ -20,9 +18,6 @@ public class ProductoServicioImpl implements ProductoServicio {
 
     @Autowired
     private UploadServicio uploadServicio;
-
-    @Autowired
-    private CategoriaRepository categoriaRepository;
 
 
     @Override
@@ -63,16 +58,6 @@ public class ProductoServicioImpl implements ProductoServicio {
     public List<Producto> obtenerTodosLosProductos() {
         return ProductoDAO.findAll();
     }
-
-    @Override
-public List<Producto> obtenerProductosPorCategoria(Long categoriaId) {
-    // Buscar la categoría en la base de datos
-    Categoria categoria = categoriaRepository.findById(categoriaId)
-            .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
     
-    // Retornar los productos de esa categoría
-    return productoDAO.findByCategoria(categoria); // Asume que este método existe en ProductoDAO
-}
-
     
 }
