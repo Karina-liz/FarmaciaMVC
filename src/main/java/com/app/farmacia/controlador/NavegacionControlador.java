@@ -87,4 +87,22 @@ public class NavegacionControlador {
         return "redirect:/login";
     }
 
+    @GetMapping("/inicio")
+public String mostrarInicio(Model model, HttpSession session) {
+    // Obtener el email del cliente de la sesión
+    String email = (String) session.getAttribute("clienteEmail");
+    
+    // Si el email está presente en la sesión, buscar el cliente
+    if (email != null) {
+        Cliente cliente = clienteServicio.buscarPorEmail(email);
+        if (cliente != null) {
+            // Agregar al modelo el nombre del cliente
+            model.addAttribute("nombreCliente", cliente.getNombres());
+        }
+    }
+    
+    // Retornar la vista de inicio
+    return "inicio";
+}
+
 }

@@ -52,25 +52,27 @@
         <thead class="table-dark">
             <tr>
                 <!--<th>Codigo</th>-->
-                <th>Nombre del Producto</th>
+                 <th>Nombre del Producto</th>
                 <th>Categoría</th>
                 <th>Precio de Venta</th>
                 <th>Principio Activo</th>
                 <th>Presentación</th>
                 <th>Laboratorio</th>
+                <th>Vencimiento</th>
                 <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="producto : ${productos}">
-                <!-- <td th:text="${producto.ID_Producto}">Codigo</td> -->
+                <!-- <td th:text="${producto.ID_Producto}">Codigo</td>-->
                 <td th:text="${producto.NombreProducto}">Nombre del Producto</td>
-                <td th:text="${producto.Categoria}">Categoría</td>
+                <td th:text="${producto.categoria.nombre}"></td>
                 <td th:text="${producto.PrecioVenta}">Precio de Venta</td>
                 <td th:text="${producto.PrincipioActivo}">Principio Activo</td>
                 <td th:text="${producto.Presentacion}">Presentación</td>
                 <td th:text="${producto.Laboratorio}">Laboratorio</td>
+                <td th:text="${producto.fechaVencimiento}"></td>
                 <td><img th:src="@{/upload/{nombre}(nombre=${producto.Foto})}" alt="Imagen del Producto" style="width: 100px; height: auto;" /></td>
                 <td>
                     <a th:href="@{/productos/editar/{id}(id=${producto.idProducto})}" class="btn btn-info">Editar</a>
