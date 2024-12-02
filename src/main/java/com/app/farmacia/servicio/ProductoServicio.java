@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.farmacia.entidad.Categoria;
 import com.app.farmacia.entidad.Producto;
 import java.io.IOException;
 
@@ -13,9 +14,17 @@ public interface ProductoServicio {
 
     Producto guardarProducto(Producto producto, MultipartFile file) throws IOException;
 
-    Producto obtenerProductoPorId(Long id);
+   Producto obtenerProductoPorId(Long id);
 
     Producto actualizarProducto(Producto producto, MultipartFile file) throws IOException;
 
     void eliminarProducto(Long id) throws IOException;
+    
+    List<Producto> obtenerTodosLosProductos();
+
+    List<Producto> buscarPorNombre(String NombreProducto);
+
+    List<Producto> buscarPorCategoria(String categoria);
+
+    List<Categoria> listarCategorias();
 }
